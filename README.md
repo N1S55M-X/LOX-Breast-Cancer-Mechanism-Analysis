@@ -1,56 +1,38 @@
-# LOX in Breast Cancer: Integrated Mechanistic Evidence Analysis
+# LOX in Breast Cancer — Integrated Mechanistic Evidence Analysis
 
-### Investigating extracellular matrix remodeling and chemotherapy resistance through cancer genomics, functional networks, and experimental literature
-
-## Overview
-
-This project investigates the role of **lysyl oxidase (LOX)** in breast cancer, particularly its potential contribution to extracellular matrix (ECM)-mediated chemotherapy resistance in triple-negative breast cancer (TNBC).
-
-Rather than relying on a single database or expression measurement, the project integrates multiple sources of biological evidence to investigate:
-
-- How LOX expression varies across breast cancer subtypes.
-- Which genes are coexpressed with LOX.
-- How frequently LOX genomic alterations and expression outliers occur.
-- Which proteins are functionally associated with LOX.
-- Whether published experimental interventions support a causal role in chemotherapy resistance.
-
-**Research approach:** Biological question → Expression analysis → Coexpression analysis → Genomic alterations → Functional networks → Experimental evidence → Mechanistic interpretation.
+**Research focus:** Lysyl oxidase (LOX), extracellular matrix remodeling, and chemotherapy resistance in breast cancer.
 
 ## Research Question
 
-**Does LOX contribute to chemotherapy resistance in breast cancer through extracellular matrix remodeling, and how does biological context influence its role?**
+Does LOX contribute to chemotherapy resistance by modifying the extracellular matrix (ECM) surrounding breast cancer cells?
 
-LOX is an enzyme involved in collagen and elastin crosslinking. Its activity can alter the structural and mechanical properties of the extracellular matrix, potentially influencing drug penetration and cell-survival signaling.
+This project integrates public cancer genomics databases, functional protein networks, and published experimental evidence to investigate this question.
 
-## Tools and Data Sources
+## Research Workflow
 
-| Tool | Purpose |
+**Biological Question → Gene Expression → Coexpression → Genomic Alterations → Functional Network → Experimental Evidence → Conclusion**
+
+| Tool | Investigation |
 |---|---|
-| UALCAN | Gene expression and breast cancer subtype comparisons |
-| UALCAN Correlated Genes | Identification of LOX-associated expression patterns |
-| cBioPortal | Genomic alterations and expression outliers |
-| STRING | Protein functional-association network analysis |
-| Published experimental studies | Evaluation of LOX-specific causal evidence |
+| UALCAN | Where and how strongly is LOX expressed? |
+| UALCAN Coexpression | Which genes show similar expression patterns? |
+| cBioPortal | How frequently is LOX altered? |
+| STRING | Which biological proteins are functionally associated with LOX? |
+| Published experiments | Does manipulating LOX change chemotherapy resistance? |
 
-## Results
+## 1. UALCAN — LOX Expression Across Breast Cancer Subtypes
 
-### 1. LOX Expression Across Breast Cancer Subtypes
+![LOX expression across breast cancer subtypes](figures/01_ualcan_subtypes.png)
 
-**Database:** UALCAN, TCGA Breast Invasive Carcinoma (BRCA).
+**Observation:** LOX expression varies across breast cancer subtypes. In the overall tumor-versus-normal comparison, the reported p-value was 0.2782, indicating no statistically significant difference.
 
-LOX expression varied across breast cancer molecular subgroups, including TNBC subtypes.
+The TNBC immunomodulatory subgroup showed relatively low LOX expression in the examined subtype comparisons.
 
-In the overall tumor-versus-normal comparison, the reported difference was not statistically significant (p = 0.2782).
+**Interpretation:** LOX is not universally overexpressed in breast cancer. Its expression depends on biological context.
 
-The TNBC immunomodulatory (TNBC-IM) subgroup showed relatively low LOX expression in the examined subtype comparisons.
+## 2. UALCAN — LOX Coexpression
 
-**Interpretation:** LOX expression is context-dependent and should not be treated as uniformly elevated across breast cancer.
-
-*Insert UALCAN subtype expression screenshot here.*
-
-### 2. LOX Coexpression Analysis
-
-The UALCAN coexpression results identified strong positive correlations between LOX and several ECM-related genes.
+We investigated which genes exhibit expression patterns correlated with LOX.
 
 | Gene | Pearson correlation |
 |---|---:|
@@ -60,33 +42,33 @@ The UALCAN coexpression results identified strong positive correlations between 
 | DACT1 | 0.80 |
 | FSTL1 | 0.80 |
 
-Additional correlated genes included FN1, COL1A1, COL1A2, POSTN, MMP2, and ITGB1.
+**Observation:** Several strongly correlated genes are associated with extracellular matrix organization.
 
-**Interpretation:** LOX expression is associated with an ECM-rich transcriptional program. These correlations do not establish that LOX directly regulates the associated genes.
+**Interpretation:** LOX expression tracks an ECM-related transcriptional program, although correlation alone does not establish causality.
 
-### 3. LOX Genomic Alterations
+**[View the LOX coexpression dataset](data/LOX_correlated_genes.txt)**
 
-**Database:** cBioPortal.
+## 3. cBioPortal — LOX Genomic Alterations
 
-**Study:** Breast Invasive Carcinoma (TCGA, PanCancer Atlas).
+**Dataset:** Breast Invasive Carcinoma (TCGA, PanCancer Atlas).
 
-**Analyzed cohort:** 994 complete samples.
+**Analyzed samples:** 994.
 
-**Finding:** LOX was reported as altered in 49 samples, approximately 5% of the cohort.
+![LOX genomic alterations in breast cancer](figures/02_cbioportal_oncoprint.png)
 
-The query included mutations, structural variants, copy-number alterations, and mRNA expression z-score outliers using a threshold of ±2.
+**Observation:** LOX was reported as altered in 49 samples, approximately 5% of the selected cohort.
 
-**Interpretation:** LOX alterations and expression outliers were relatively uncommon under these settings. The reported 5% should not be interpreted as the LOX DNA mutation frequency.
+The analysis included mutations, structural variants, copy-number alterations, and mRNA expression outliers at a z-score threshold of ±2.
 
-*Insert cBioPortal OncoPrint screenshot here.*
+**Interpretation:** The observed alteration frequency includes expression outliers and must not be interpreted as the LOX DNA mutation frequency.
 
-### 4. Functional Association Network
-
-**Database:** STRING v12.5.
+## 4. STRING — LOX Functional Association Network
 
 **Organism:** Homo sapiens.
 
-The LOX network identified high-confidence functional associations with extracellular matrix-related proteins.
+![LOX protein functional association network](figures/03_string_network.png)
+
+The network identified functional associations between LOX and multiple extracellular matrix-related proteins.
 
 | Protein | STRING score |
 |---|---:|
@@ -99,68 +81,62 @@ The LOX network identified high-confidence functional associations with extracel
 | HIF1A | 0.816 |
 | MMP2 | 0.811 |
 
-**Interpretation:** The network supports LOX's functional relationship with ECM organization and remodeling. STRING associations are not necessarily direct physical interactions or breast-cancer-specific mechanisms.
+**Interpretation:** These associations support LOX's functional involvement in ECM organization and remodeling. STRING associations do not necessarily represent direct physical binding or cancer-specific causation.
 
-*Insert STRING network screenshot here.*
+## 5. Published Experimental Evidence
 
-### 5. Experimental Evidence for Causality
+### Primary Research Paper
 
-Published experimental studies provide stronger causal evidence than observational expression and network analyses.
+**Targeting lysyl oxidase (LOX) overcomes chemotherapy resistance in triple negative breast cancer.**
 
-A directly relevant study is:
-
-**Targeting lysyl oxidase (LOX) overcomes chemotherapy resistance in triple negative breast cancer.**  
 *Nature Communications* (2020).
 
-https://www.nature.com/articles/s41467-020-16199-4
+**[Read the published paper](https://www.nature.com/articles/s41467-020-16199-4)**
 
-The study investigated LOX manipulation and chemotherapy response in experimental TNBC models, including approaches involving gene expression manipulation and pharmacological inhibition.
+The researchers investigated how manipulating LOX influences chemotherapy response in experimental TNBC models.
 
-These findings support a causal contribution of LOX activity to chemotherapy resistance in certain preclinical contexts.
+Their experiments support a causal contribution of LOX to chemotherapy resistance under specific biological conditions.
 
-However, the present project did not independently reproduce these experimental interventions.
+These published experiments provide stronger causal evidence than our observational database analyses.
 
-## Integrated Mechanistic Interpretation
+## 6. Integrated Mechanistic Interpretation
 
-The combined evidence is consistent with the following proposed pathway:
+The evidence supports the following proposed pathway:
 
-**LOX activity → Collagen crosslinking → ECM structural and mechanical changes → Altered drug penetration and cell-survival signaling → Chemotherapy resistance.**
+**LOX activity → Collagen crosslinking → ECM structural changes → Altered drug penetration and cell-survival signaling → Chemotherapy resistance**
 
-This model is supported by published experimental literature, while the database analyses provide complementary expression, genomic, and functional context.
+This mechanism is supported by published preclinical experiments. Our database results provide complementary molecular and functional context rather than independent proof of the mechanism.
 
-## Key Findings
+## 7. Key Findings
 
 1. LOX expression varies across breast cancer contexts.
-2. LOX is strongly coexpressed with multiple ECM-associated genes.
-3. LOX genomic alterations and expression outliers were reported in approximately 5% of the selected TCGA cohort.
-4. STRING supports functional associations between LOX and extracellular matrix proteins.
+2. LOX correlates with multiple ECM-associated genes.
+3. LOX alterations or expression outliers were detected in approximately 5% of the selected TCGA cohort.
+4. STRING supports functional associations between LOX and ECM-related proteins.
 5. Published experimental interventions support a context-dependent causal contribution of LOX to chemotherapy resistance.
 
-## Limitations
+## 8. Limitations
 
-- The analyses were exploratory and based on publicly available database outputs.
-- No independent patient-level statistical modeling was performed.
-- Coexpression may partly reflect differences in stromal or fibroblast abundance.
-- Subtype comparisons require careful consideration of sample sizes and multiple testing.
-- STRING networks represent functional associations, not necessarily direct interactions.
-- Published preclinical findings do not establish clinical benefit from LOX inhibition.
-- This project does not claim a novel causal discovery or independently validated therapeutic intervention.
+- The database analyses were exploratory.
+- No new wet-lab experiments were performed.
+- Gene coexpression does not establish causality.
+- Stromal abundance may influence LOX expression patterns.
+- The genomic cohort includes multiple breast cancer subtypes.
+- Preclinical evidence does not establish clinical effectiveness of LOX inhibition.
 
-## Conclusion
+## 9. Conclusion
 
-The integrated evidence supports **LOX as a context-dependent contributor to ECM-associated chemotherapy resistance in experimental breast cancer models**, particularly TNBC.
+This integrated evidence assessment supports **LOX as a context-dependent contributor to ECM-associated chemotherapy resistance in experimental breast cancer models**, particularly TNBC.
 
-The project demonstrates how multiple biological databases and published perturbation studies can be combined to evaluate a candidate molecular mechanism while distinguishing observational associations from causal evidence.
+The project demonstrates a research workflow combining gene expression, genomic alterations, functional networks, and published causal experiments.
 
-## References and Resources
+It is an evidence-based mechanistic investigation, not a claim of a newly discovered cancer mechanism.
+
+## Data Sources and References
 
 - [UALCAN](https://ualcan.path.uab.edu/)
-- [cBioPortal for Cancer Genomics](https://www.cbioportal.org/)
-- [STRING Database](https://string-db.org/)
-- [Targeting lysyl oxidase (LOX) overcomes chemotherapy resistance in triple negative breast cancer — Nature Communications (2020)](https://www.nature.com/articles/s41467-020-16199-4)
+- [cBioPortal](https://www.cbioportal.org/)
+- [STRING](https://string-db.org/)
+- [Nature Communications — LOX and chemotherapy resistance in TNBC (2020)](https://www.nature.com/articles/s41467-020-16199-4)
 
-## Project Type
-
-Computational evidence review | Cancer genomics | Extracellular matrix biology | Mechanistic research
-
-**Research status:** Completed exploratory evidence assessment.
+**Project status:** Completed exploratory evidence assessment.
